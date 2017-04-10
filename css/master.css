@@ -10,4 +10,51 @@ body {
   height: 100%;
   overflow: hidden;
   cursor: crosshair;
+  background-color: black;
+}
+
+.wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 400px;
+  height: 500px;
+  cursor: auto;
+  text-align: center;
+}
+
+.name {
+  color: #afffab;
+  font-size: 30px;
+}
+
+.text {
+  margin: 30px;
+  font-size: 35px;
+}
+
+.state {
+  color: red;
+}
+
+.score {
+  color: green;
+}
+
+.button {
+  margin: 30px;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 0 0 40px rgba(255,255,255,0.49);
+}
+
+.button:active {
+  box-shadow: inset 0 0 40px rgba(255,255,255,0.49);
 }
