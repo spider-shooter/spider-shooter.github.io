@@ -43,6 +43,51 @@
 					<img width="600px" src="./img/babel.png" alt="babel" style="border: none; background-color: #222;">
 				</section>
 				<section>
+					<h2>Problems</h2>
+<pre><code class="js">	Math.atan2(y, x);
+	Math.atan2(±0, -0);// ±PI.
+	Math.atan2(±0, +0);// ±0.
+</code></pre>
+					<img src="https://mdn.mozillademos.org/files/11557/atan2.png" alt="atan2" style="border: none; background-color: white;">
+				</section>
+				<section>
+					<h2>Problems</h2>
+<pre><code class="js">	Math.sin(x);
+	Math.cos(x);
+</code></pre>
+					<img src="https://matematikalegko.ru/wp-content/uploads/2013/02/29.gif" alt="sin and cos" style="border: none; background-color: white;">
+				</section>
+				<section>
+					<h2>Collision of spiders</h2>
+<pre><code class="js">for (let i = 0; i < spiders.length; i++) {
+ let mod = 1;
+ for (let j = i + 1; j < spiders.length; j++) {
+  mod++;
+  let count = 0;
+  while (travers(spiders[i], spiders[j]) && count++ < 4) {
+   if (mod % 2 == 0) {
+    if (spiders[i].pos.y > spiders[j].pos.y) {
+     ++spiders[i].pos.y;
+     --spiders[j].pos.y;
+    } else {
+     --spiders[i].pos.y;
+     ++spiders[j].pos.y;
+    }
+   } else {
+    if (spiders[i].pos.x > spiders[j].pos.x) {
+     ++spiders[i].pos.x;
+     --spiders[j].pos.x;
+    } else {
+     --spiders[i].pos.x;
+     ++spiders[j].pos.x;
+    }
+   }
+  }
+ }
+}
+</code></pre>
+				</section>
+				<section>
 					<h2>Thank you</h2>
 				</section>
 			</div>
