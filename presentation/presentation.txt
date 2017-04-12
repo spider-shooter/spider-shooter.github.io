@@ -1,0 +1,49 @@
+
+1) What is WebGL?
+	WebGL is a cross-platform, royalty-free API used to create 3D graphics in a Web browser.
+	Based on OpenGL ES 2.0, WebGL uses the OpenGL shading language, GLSL, and offers the familiarity of the standard OpenGL API.
+	Because it runs in the HTML5 Canvas element, WebGL has full integration with all Document Object Model (DOM) interfaces.
+2) How do I run WebGL?
+	To access WebGL content you need to have a browser that supports it.
+	Also, having a good graphics card will likely improve WebGL performance on your computer.
+3) What is WebGL used for?
+	WebGL allows developers to put real-time interactive 3D graphics in the browser.
+	 WebGL can be applied to interactive music videos, games, data visualization,
+	  art, 3D design environments, 3D modeling of space, 3D modeling of objects,
+		plotting mathematical functions, or creating physical simulations.
+4) How does WebGL work?
+	In WebGL, like in most real-time 3D graphics, the triangle is the basic element with which models are drawn.
+	Therefore, the process of drawing in WebGL involves using JavaScript to generate
+	 the information that specifies where and how these triangles will be created,
+	  and how they will look (colour, shades, textures, etc).
+		This information is then fed to the GPU, which processes it, and returns a view of the scene.
+5) How do I get started using WebGL?
+	You can also write your own WebGL from scratch, using no libraries.
+	 - Three.js is a lightweight 3D engine with a very low level of complexity.
+	<!--
+	 - PhiloGL is built with a focus on JavaScript good practices and idioms. Its modules cover a number of categories from program and shader management to XHR, 	JSONP, effects, web workers and much more.
+	 - GLGE has some more complex features, like skeletal animation and animated materials.
+	 - J3D allows you not only to create your own scenes but also to export scenes from Unity to WebGL.
+	  -->
+6) Three.js
+	Download the three.js library and include it in your html.
+7) Creating the scene
+	We have now set up the scene, our camera and the renderer.
+	PerspectiveCamera :
+	- fov: The vertical field of view. This dictates the size of the vertical space your camera's view can reach.
+	- aspect: This is the aspect ratio you use to create the horizontal field of view based off the vertical.
+	- near: This is the nearest plane of view (where the camera's view begins).
+	- far: This is the far plane of view (where the camera's view ends).
+	Next up is the renderer. This is where the magic happens.
+	It's a good idea to use the width and height of the area we want to fill with our app - in this case, the width and height of the browser window.
+	Last but not least, we add the renderer element to our HTML document. This is a <canvas> element the renderer uses to display the scene to us.
+8)
+	You can imagine your scene now as a "room" with a camera and absolutely no light.
+	If you were to place an object in the room, you still wouldn't be able to see it!
+	You would need to shine a light on the object to get it to show up in the camera's view.
+	There are different kinds of lights and they have different effects.
+		- Directional Lights: a large light from far away that shines from one direction (think of the sun).
+		- Ambient Lights: less of a light source and more of a soft color tint for the scene.
+		- Point Lights: think of a lightbulb - shines in every direction & has a limited range.
+		- Spot Lights: just like a spotlight works in real life.
+		- Hemisphere Lights: an ambient (non directional) light coming from the ceiling and floor of the scene.

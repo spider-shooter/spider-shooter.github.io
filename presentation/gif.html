@@ -1,0 +1,673 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WebGL / Three.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>WebGL / Three.js</h1>
+					<!-- <iframe src="https://siarhei-smantsar.github.io/three/rs.html" width="400" height="400"></iframe> -->
+					<img src="img/RollingSchool.gif" alt="RollingSchool.gif"  width="400" style="border: none;">
+					<p><a href="https://siarhei-smantsar.github.io/three/rs.html">Smantsar Siarhei</a></p>
+				</section>
+				<section>
+					<section>
+						<h2>What Is WebGL?</h2>
+						<ul>
+							<li>Based on OpenGL ES 2.0</li>
+							<li>It runs in the HTML5 Canvas element</li>
+							<li>WebGL is a DOM API</li>
+						</ul>
+						<br>
+						<a href="https://www.khronos.org/webgl/">
+							<img width="200px" data-src="https://www.khronos.org/assets/uploads/ceimg/made/assets/uploads/apis/WebGL_100px_June16_180_75.png" alt="WebGL" style="background: #ffffff; border: none;">
+						</a>
+						<aside class="notes">
+							<ul>
+								<li>Method of generating dynamic 3D graphics using JavaScript, accelerated through hardware</li>
+								<li>//WebGL is a cross-platform, royalty-free API used to create 3D graphics in a Web browser.</li>
+								<li>Based on OpenGL ES 2.0, WebGL uses the OpenGL shading language, GLSL, and offers the familiarity of the standard OpenGL API.</li>
+								<li>Because it runs in the HTML5 Canvas element, WebGL has full integration with all Document Object Model (DOM) interfaces.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>How do I run WebGL?</h3>
+						<img src="img/graphics.PNG" alt="WebGL-graphics" style="border: none;">
+						<br>
+						<a href="http://caniuse.com/#feat=webgl">http://caniuse.com/#feat=webgl</a>
+						<!-- <p>Desktop</p>
+						<img src="img/WebGL-desktop.PNG" alt="WebGL-desktop" style="border: none;">
+						<p>Mobile</p>
+						<img src="img/WebGL-mobile.PNG" alt="WebGL-mobile" style="border: none;"> -->
+						<aside class="notes">
+							<ul>
+								<li>To access WebGL content you need to have a browser that supports it.</li>
+								<li>Also, having a good graphics card will likely improve WebGL performance on your computer.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>What is WebGL used for?</h3>
+						<!-- <iframe src="https://www.google.com/logos/2014/rubiks/iframe/index.html" width="600" height="600"></iframe> -->
+						<img src="img/rubiks.gif" width="500" alt="rubiks" style="border: none;">
+						<a href="https://www.google.com/logos/2014/rubiks/iframe/index.html">https://www.google.com/logos/2014/rubiks/iframe/index.html</a>
+						<aside class="notes">
+							<ul>
+								<li>WebGL allows developers to put real-time interactive 3D graphics in the browser.</li>
+								<li>WebGL can be applied to interactive music videos, games, data visualization,
+	  							art, 3D design environments, 3D modeling of space, 3D modeling of objects,
+									plotting mathematical functions, or creating physical simulations.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="http://chandlerprall.github.io/Physijs/examples/jenga.html">http://chandlerprall.github.io/Physijs/examples/jenga.html</a>
+						<br>
+						<img src="img/jenga.gif" width="400" alt="jenga" style="border: none;">
+						<!-- <iframe src="https://www.khronos.org/registry/webgl/sdk/demos/google/san-angeles/index.html" width="800" height="700"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>WebGL allows developers to put real-time interactive 3D graphics in the browser.</li>
+								<li>WebGL can be applied to interactive music videos, games, data visualization,
+	  							art, 3D design environments, 3D modeling of space, 3D modeling of objects,
+									plotting mathematical functions, or creating physical simulations.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>How does WebGL work?</h3>
+						<a href="http://duriansoftware.com/joe/An-intro-to-modern-OpenGL.-Chapter-1:-The-Graphics-Pipeline.html">http://duriansoftware.com/joe/An-intro-to-modern-OpenGL.-Chapter-1:-The-Graphics-Pipeline.html</a>
+						<img height="200" src="https://www.cs.rpi.edu/~cutler/classes/advancedgraphics/F05/assignments/assignment2/creased_cube_0.jpg" alt="cube" style="border: none;">
+						<img height="200" src="http://www.firststeps.ru/mfc/directx/dxhelp/22_2.gif" alt="ball" style="border: none;">
+						<img height="200" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Dolphin_triangle_mesh.png" alt="Dolphin" style="border: none;">
+						<br>
+						<img height="200" src="http://www.webreference.com/3d/lesson52/52-16.gif" alt="fase" style="border: none;">
+						<img height="200" src="https://hsto.org/getpro/habr/post_images/839/68c/222/83968c2224211dbaf6259948dedaadd8.png" alt="fase" style="border: none;">
+						<img height="200" src="https://www.cs.rpi.edu/~cutler/classes/advancedgraphics/F05/assignments/assignment2/bunny_badsimp_1.jpg" alt="bunny" style="border: none;">
+						<aside class="notes">
+							<ul>
+								<li>In WebGL, like in most real-time 3D graphics, the triangle
+									is the basic element with which models are drawn. </li>
+								<li>Therefore, the process of drawing in WebGL involves using JavaScript to generate
+	 								the information that specifies where and how these triangles will be created,
+	 								and how they will look (colour, shades, textures, etc).
+									This information is then fed to the GPU, which processes it, and returns a view of the scene.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>How do I get started using WebGL?</h3>
+							<p>You can write your own WebGL from scratch <span class="fragment">or using libraries:</span></p>
+							<ul>
+								<li class="fragment"><a href="https://github.com/mrdoob/three.js#readme">Three.js</a></li>
+								<li class="fragment"><a href="http://www.senchalabs.org/philogl/">PhiloGL</a></li>
+								<li class="fragment"><a href="http://www.glge.org/">GLGE</a></li>
+								<li class="fragment"><a href="https://github.com/drojdjou/J3D#readme">J3D</a></li>
+								<li class="fragment">etc</li>
+							</ul>
+							<aside class="notes">
+								<ul>
+									<li>You can also write your own WebGL from scratch, using no libraries. </li>
+									<li>Three.js is a lightweight 3D engine with a very low level of complexity.</li>
+									<li>PhiloGL is built with a focus on JavaScript good practices and idioms.
+										Its modules cover a number of categories from program and
+										shader management to XHR, 	JSONP, effects, web workers and much more</li>
+									<li>GLGE has some more complex features, like skeletal animation and animated materials.</li>
+									<li>J3D allows you not only to create your own scenes but also to export scenes from Unity to WebGL.</li>
+								</ul>
+							</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Three.js</h2>
+						<!-- <p class="fragment">Before we start</p> -->
+						<pre class="fragment"><code class="html">
+<script src="js/three.js"></script>
+						</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>Download the three.js library and include it in your html.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<p>Creating the scene</p>
+						<pre class="fragment"><code class="js">
+var scene = new THREE.Scene();
+// add a camera
+// THREE.PerspectiveCamera(fov, aspect, near, far)
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth
+				/ window.innerHeight, 0.1, 1000 );
+						</code></pre>
+						<img height="350" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/frustum.svg" alt="camera" style="background: #ffffff; border: none;" class="fragment">
+						<aside class="notes">
+							<ul>
+								<li>A scene is the 3D space in which you can place objects, cameras and lighting. </li>
+								<li>PerspectiveCamera :
+									<ul>
+										<li>fov: The vertical field of view. This dictates the size of the vertical space your camera's view can reach.</li>
+										<li>aspect: This is the aspect ratio you use to create the horizontal field of view based off the vertical.</li>
+										<li>near: This is the nearest plane of view (where the camera's view begins).</li>
+										<li>far: This is the far plane of view (where the camera's view ends).</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<pre><code class="js">
+var scene = new THREE.Scene();
+// add a camera
+// THREE.PerspectiveCamera(fov, aspect, near, far)
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth
+			/ window.innerHeight, 0.1, 1000 );
+// place the camera at z of 100
+camera.position.z = 100;
+// add a renderer
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+// add the renderer element to the DOM so it is in our page
+document.body.appendChild( renderer.domElement );
+						</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>Next up is the renderer. This is where the magic happens.</li>
+								<li>It's a good idea to use the width and height of the area we
+									 want to fill with our app - in this case, the width and height of the browser window.</li>
+								<li>Last but not least, we add the renderer element to our HTML document.
+									This is a canvas element the renderer uses to display the scene to us.</li>
+							</ul>
+						</aside>
+					</section>
+
+				</section>
+				<section>
+					<section>
+						<h2>Geometry</h2>
+						<aside class="notes">
+							<ul>
+								<li>The next step is to put some objects in the scene.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/BoxGeometry">BoxGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+						</code></pre>
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#BoxGeometry" width="400" height="400" class="fragment"></iframe> -->
+						<img src="img/BoxGeometry.gif" width="400" alt="BoxGeometry" style="border: none;">
+						<aside class="notes">
+							<ul>
+								<li>BoxGeometry is the quadrilateral primitive geometry class.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/CircleGeometry">CircleGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.CircleGeometry( 5, 32 );
+var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+var circle = new THREE.Mesh( geometry, material );
+scene.add( circle );
+						</code></pre>
+						<img src="img/CircleGeometry.gif" width="400" alt="CircleGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#CircleGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>CircleGeometry is a simple shape of Euclidean geometry</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/ConeGeometry">ConeGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.ConeGeometry( 5, 20, 32 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var cone = new THREE.Mesh( geometry, material );
+scene.add( cone );
+						</code></pre>
+						<img src="img/ConeGeometry.gif" width="400" alt="ConeGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#ConeGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating cone geometries</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/CylinderGeometry">CylinderGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.CylinderGeometry( 5, 5, 20, 32 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var cylinder = new THREE.Mesh( geometry, material );
+scene.add( cylinder );
+						</code></pre>
+						<img src="img/CylinderGeometry.gif" width="400" alt="CylinderGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#CylinderGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating cylinder geometries</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/DodecahedronGeometry">DodecahedronGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.DodecahedronGeometry(1);
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var dodecahedron = new THREE.Mesh( geometry, material );
+scene.add( dodecahedron );
+						</code></pre>
+						<img src="img/DodecahedronGeometry.gif" width="400" alt="DodecahedronGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#DodecahedronGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating a dodecahedron geometries.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/IcosahedronGeometry">IcosahedronGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.IcosahedronGeometry(1);
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var icosahedron = new THREE.Mesh( geometry, material );
+scene.add( icosahedron );
+						</code></pre>
+						<img src="img/IcosahedronGeometry.gif" width="400" alt="IcosahedronGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#IcosahedronGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating an icosahedron geometry.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/OctahedronGeometry">OctahedronGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.OctahedronGeometry(1);
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var octahedron = new THREE.Mesh( geometry, material );
+scene.add( octahedron );
+						</code></pre>
+						<img src="img/OctahedronGeometry.gif" width="400" alt="OctahedronGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#OctahedronGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating an octahedron geometry.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/ParametricGeometry">ParametricGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.ParametricGeometry(
+	THREE.ParametricGeometries.klein, 25, 25 );
+var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+						</code></pre>
+						<img src="img/ParametricGeometry.gif" width="400" alt="ParametricGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#ParametricGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>Generate geometry representing a parametric surface.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/PlaneGeometry">PlaneGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
+var material = new THREE.MeshBasicMaterial( {
+	color: 0xffff00, side: THREE.DoubleSide} );
+var plane = new THREE.Mesh( geometry, material );
+scene.add( plane );
+						</code></pre>
+						<img src="img/PlaneGeometry.gif" width="400" alt="PlaneGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#PlaneGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating plane geometries</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/RingGeometry">RingGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.RingGeometry( 1, 5, 32 );
+var material = new THREE.MeshBasicMaterial( {
+	color: 0xffff00, side: THREE.DoubleSide } );
+var mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+						</code></pre>
+						<img src="img/RingGeometry.gif" width="400" alt="RingGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#RingGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating a two-dimensional ring geometry.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/SphereGeometry">SphereGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.SphereGeometry( 5, 32, 32 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var sphere = new THREE.Mesh( geometry, material );
+scene.add( sphere );
+						</code></pre>
+						<img src="img/SphereGeometry.gif" width="400" alt="SphereGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#SphereGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating sphere geometries</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/TetrahedronGeometry">TetrahedronGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.TetrahedronGeometry( 1 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var tetrahedron = new THREE.Mesh( geometry, material );
+scene.add( tetrahedron );
+						</code></pre>
+						<img src="img/TetrahedronGeometry.gif" width="400" alt="TetrahedronGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#TetrahedronGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating a tetrahedron geometries.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/TorusGeometry">TorusGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+var torus = new THREE.Mesh( geometry, material );
+scene.add( torus );
+						</code></pre>
+						<img src="img/TorusGeometry.gif" width="400" alt="TorusGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#TorusGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A class for generating torus geometries</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Geometries/TorusKnotGeometry">TorusKnotGeometry</a>
+						<pre><code class="js">
+var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+var torusKnot = new THREE.Mesh( geometry, material );
+scene.add( torusKnot );
+						</code></pre>
+						<img src="img/TorusKnotGeometry.gif" width="400" alt="TorusKnotGeometry" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/geometry-browser.html#TorusKnotGeometry" width="400" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>Creates a torus knot, the particular shape of which is
+									defined by a pair of coprime integers, p and q.
+									If p and q are not coprime, the result will be a torus link.</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Materials</h2>
+						<aside class="notes">
+							<ul>
+								<li>Some pretty cool materials that you can use</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Materials/MeshNormalMaterial">MeshNormalMaterial</a>
+						<pre><code class="js">
+var material = new THREE.MeshNormalMaterial();
+						</code></pre>
+						<img src="img/MeshNormalMaterial.gif" width="400" alt="MeshNormalMaterial" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshNormalMaterial" width="900" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A material that maps the normal vectors to RGB colors.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Materials/MeshLambertMaterial">MeshLambertMaterial</a>
+						<pre><code class="js">
+var color = new THREE.Color( "#2194CE" );
+var hex = color.getHex() // "0x2194ce"
+var material = new THREE.MeshLambertMaterial( {color: hex, ...} );
+						</code></pre>
+						<img src="img/MeshLambertMaterial.gif" width="400" alt="MeshLambertMaterial" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshLambertMaterial" width="900" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A material for non-shiny surfaces, without specular highlights.</li>
+								<li>Materials accept a color parameter as a hexadecimal value</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<a href="https://threejs.org/docs/index.html#Reference/Materials/MeshPhongMaterial">MeshPhongMaterial</a>
+						<pre><code class="js">
+var color = new THREE.Color( "#2194CE" );
+var material = new THREE.MeshPhongMaterial( {
+	color: color.getHex(), ...} );
+						</code></pre>
+						<img src="img/MeshPhongMaterial.gif" width="400" alt="MeshPhongMaterial" style="border: none;">
+						<!-- <iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshPhongMaterial" width="900" height="400"></iframe> -->
+						<aside class="notes">
+							<ul>
+								<li>A material for shiny surfaces with specular highlights.</li>
+							</ul>
+						</aside>
+					</section>
+					<!-- <section>
+						<a href="https://threejs.org/docs/index.html#Reference/Materials/MeshStandardMaterial">MeshStandardMaterial</a>
+						<pre><code class="js">
+var color = new THREE.Color( "#2194CE" );
+var material = new THREE.MeshStandardMaterial( {
+	color: color.getHex(), ...} );
+						</code></pre>
+						<iframe src="https://threejs.org/docs/scenes/material-browser.html#MeshStandardMaterial" width="900" height="400"></iframe>
+						<aside class="notes">
+							<ul>
+								<li>A standard physically based material.</li>
+							</ul>
+						</aside>
+					</section> -->
+				</section>
+				<section>
+						<h4>Lighting</h4>
+						<ul>
+							<li class="fragment">Directional Lights</li>
+							<li class="fragment">Ambient Lights</li>
+							<li class="fragment">Point Lights</li>
+							<li class="fragment">Spot Lights</li>
+							<li class="fragment">Hemisphere Lights</li>
+						</ul>
+						<br>
+						<a class="fragment" href="https://www.solutiondesign.com/blog/-/blogs/webgl-and-three-js-lighting/">link</a>
+						<pre><code class="js">var light = new THREE.PointLight(0xFFFF00);
+scene.add(light);</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>You can imagine your scene now as a "room" with a camera and absolutely no light.</li>
+								<li>If you were to place an object in the room, you still wouldn't be able to see it! </li>
+								<li>You would need to shine a light on the object to get it to show up in the camera's view.</li>
+								<li>There are different kinds of lights and they have different effects.
+									<ul>
+										<li>Directional Lights: a large light from far away that shines from one direction (think of the sun).</li>
+										<li>Ambient Lights: less of a light source and more of a soft color tint for the scene.</li>
+										<li>Point Lights: think of a lightbulb - shines in every direction and has a limited range.</li>
+										<li>Spot Lights: just like a spotlight works in real life.</li>
+										<li>Hemisphere Lights: an ambient (non directional) light coming from the ceiling and floor of the scene.</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Animating a Three.js scene</h2>
+						<pre><code class="js">
+// a render loop
+function render() {
+	requestAnimationFrame(render);
+	// render the scene
+	renderer.render(scene, camera);
+};
+render();
+						</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>the render loop</li>
+								<li>The key to animating your 3D scene is to create a render loop with a
+									requestAnimationFrame function, and rendering
+									your scene within the loop. </li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Exemple</h3>
+						<pre><code class="js">var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth
+				/ window.innerHeight, 0.1, 1000);
+camera.position.z = 50;
+// add a renderer
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+// add geometry and material
+var geometry = new THREE.BoxGeometry( 20, 20, 20);
+var material = new THREE.MeshNormalMaterial();
+var cube = new THREE.Mesh(geometry, material);
+scene.add(cube);</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>add  a scene and a camera</li>
+								<li>place the camera at z of 50</li>
+								<li>add a renderer</li>
+								<li>add the renderer element to the DOM so it is in our page</li>
+								<li>create some geometry - this is how you create some cube geometry using the BoxGeometry method</li>
+								<li>create a material</li>
+								<li>add the geometry to the mesh - and apply the material to it</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<pre><code class="js">// add light
+var light = new THREE.PointLight(0xFFFF00);
+light.position.set(10, 0, 25);
+scene.add(light);
+// rotate cube
+cube.rotation.y = -0.25;
+// shift cube on the x axis
+cube.position.x = -10;
+// add render loop
+var render = function () {
+  requestAnimationFrame(render);
+  cube.rotation.x += 0.01
+  renderer.render(scene, camera);
+};
+render();</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>add  a light</li>
+								<li>position the light so it shines on the cube (x, y, z)</li>
+								<li>rotate cube</li>
+								<li>shift cube on the x axis</li>
+								<li>add render loop</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<!-- <iframe src="https://siarhei-smantsar.github.io/three/" width="500" height="500"></iframe> -->
+						<img src="img/EXEMPLE.gif" alt="EXEMPLE"  width="400" style="border: none;">
+						<br>
+						<a href="https://siarhei-smantsar.github.io/three/">https://siarhei-smantsar.github.io/three/</a>
+						<aside class="notes">
+							<ul>
+								<li>This is basic Three.js scene!</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Thank you for attention</h2>
+				</section>
+				<section>
+					<h4>links</h4>
+					<ul>
+						<li><a href="https://codepen.io/rachsmith/post/beginning-with-3d-webgl-pt-1-the-scene">https://codepen.io/rachsmith/post/beginning-with-3d-webgl-pt-1-the-scene</a></li>
+						<li><a href="https://dev.opera.com/articles/introduction-to-webgl-part-1/">https://dev.opera.com/articles/introduction-to-webgl-part-1/</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-73269364-3', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>

@@ -55,6 +55,11 @@ body {
   font-size: 60px;
 }
 
+a {
+  display: block;
+  text-decoration: none;
+}
+
 .button {
   margin: 30px;
   padding-top: 10px;
